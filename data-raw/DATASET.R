@@ -10,6 +10,11 @@ url <- "https://datos.gov.co"
 soc_download_list(url, "data-raw/datosgovco")
 
 
+url <- "https://data.cityofchicago.org/"
+chicago <- soc_list(url)
+
+
+
 all_datasets <- ls.socrata("https://datos.gov.co")
 
 # flatten dataframe

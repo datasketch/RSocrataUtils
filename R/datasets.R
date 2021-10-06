@@ -17,9 +17,17 @@ soc_list <- function(url){
     y
   }) %>% as_tibble()
 
+  url <- gsub("/$","", url)
+
+  al2 <- al2 %>%
+    dplyr::mutate(dataset_id = stringr::word(landingPage, -1, sep = "/"),
+                  resource_url = paste0(url, "/resource/",
+                                        dataset_id, ".json")) %>%
+    dplyr::select(dataset_id, title, resource_url, description,
+                  keyword, landingPage, everything())
+
   class(al2) <- c(class(al2), "soc_list")
   al2
-
 }
 
 
@@ -38,3 +46,7 @@ soc_list_save <- function(x, name, format = "rds"){
   }
 
 }
+
+
+
+
